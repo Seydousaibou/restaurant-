@@ -13,10 +13,11 @@
             rel="stylesheet">
     </head>
     <body>
-
         <header>
             <a href="#" class="logo"><span>R</span> Resto</a>
-            <div class="menutoggle" onclick="toggleMenu();"></div>
+            <div class="menutoggle" onclick="toggleMenu();">
+                <i class="fa fa-bars"></i> <!-- Icône de menu -->
+            </div>
             <ul class="navbar">
                 <li><a href="#banniere" onclick="toggleMenu();">Accueil</a></li>
                 <li><a href="#apropos" onclick="toggleMenu();">A propos</a></li>
@@ -24,9 +25,42 @@
                 <li><a href="#expert" onclick="toggleMenu();">Expert</a></li>
                 <li><a href="#Temoignages" onclick="toggleMenu();">Temoignage</a></li>
                 <li><a href="#Contact" onclick="toggleMenu();">Contact</a></li>
-                <a href="#" class="btn-reserve" onclick="toggleMenu();">Reservation</a>
+                <a href="#" class="btn-reserve" onclick="showReservationForm(); return false;">Réservation</a>
             </ul>
         </header>
+        
+        <!-- Formulaire de réservation -->
+        <div id="reservationForm" class="reservation-form">
+            <div class="form-content">
+                <span class="close" onclick="hideReservationForm();">&times;</span>
+                <h2 class="bebe">Réservation</h2>
+                <form>
+                    <div class="inputbox">
+                        <input type="text" placeholder="Nom" required>
+                    </div>
+                    <div class="inputbox">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" placeholder="Téléphone" required>
+                    </div>
+                    <div class="inputbox">
+                        <input type="date" placeholder="Date" required>
+                    </div>
+                    <div class="inputbox">
+                        <input type="number" placeholder="Nombre de personnes" required>
+                    </div>
+                    <div class="inputbox">
+                        <textarea placeholder="Commentaires"></textarea>
+                    </div>
+                    <div class="inputbox">
+                        <input type="submit" value="Réserver">
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        
 
         <section class="banniere" id="banniere">
             <div class="contenu">
@@ -35,7 +69,7 @@
                     avec une
                     sélection de plats raffinés et équilibrés.
                 </p>
-                <a href="#" class="btn1">Notre Menu</a>
+                <a href="#menu" class="btn1">Notre Menu</a>
                 <a href="#" class="btn2">Reservation</a>
             </div>
         </section>
@@ -44,7 +78,7 @@
             <div class="row">
                 <div class="col50">
                     <h2 class="titre-texte"><span>À</span>propos de nous</h2>
-                    <p>
+                    <p class="body">
                         Notre équipe dévouée est guidée par une philosophie
                         simple : offrir des plats qui nourrissent le corps et l'âme.
                         Chaque jour, notre chef et son équipe préparent des mets
@@ -201,7 +235,7 @@
             <div class="contenu">
                 <div class="box">
                     <div class="imbox">
-                        <img src="./asset/image/Equipe 1.jpg" alt="image" >
+                        <img src="./asset/image/Equipe 1.jpg" alt="image" class="image6" >
                     </div>
                     <div class="text">
                         <h3>Paul Bocuse </h3>
@@ -209,7 +243,7 @@
                 </div>
                 <div class="box">
                     <div class="imbox">
-                        <img src="./asset/image/equipe 2.jpg" alt="image">
+                        <img src="./asset/image/equipe 2.jpg" alt="image" class="image6">
                     </div>
                     <div class="text">
                         <h3>Heston Blumenthal</h3>
@@ -217,7 +251,7 @@
                 </div>
                 <div class="box">
                     <div class="imbox">
-                        <img src="./asset/image/equipe 3.jpg" alt="image">
+                        <img src="./asset/image/equipe 3.jpg" alt="image" class="image6">
                     </div>
                     <div class="text">
                         <h3>Joël Robuchon</h3>
@@ -225,7 +259,7 @@
                 </div>
                 <div class="box">
                     <div class="imbox">
-                        <img src="./asset/image/equipe 4.jpg" alt="image">
+                        <img src="./asset/image/equipe 4.jpg" alt="image"class="image6" >
                     </div>
                     <div class="text">
                         <h3>Gordon Ramsay </h3>
@@ -287,12 +321,10 @@
         <section class="Contact" id="Contact">
             <div class="titre noir">
                 <h2 class="titre-text"><span>C</span>ontact</h2>
-                <p class="conte">
-                    Contactez-Nous 
-                </p>
+                <p class="conte">Contactez-Nous</p>
             </div>
             <div class="Contactform">
-                <h3>Envoyer un message</h3>
+                <h3 class="bocuse">Envoyer un message</h3>
                 <div class="inputboite">
                     <input type="text" placeholder="Nom">
                 </div>
@@ -300,13 +332,14 @@
                     <input type="text" placeholder="Email">
                 </div>
                 <div class="inputboite">
-                    <textarea placeholder="message"></textarea>
+                    <textarea placeholder="Message"></textarea>
                 </div>
                 <div class="inputboite">
                     <input type="submit" value="Envoyer">
                 </div>
             </div>
         </section>
+        
         <div class="copyright">
             <p>copyright 2021 <a href="#"> youtube. Tous droits reservé</a></p>
         </div>
@@ -329,7 +362,25 @@
                 menutoggle.classList.toggle('active');
                 navbar.classList.toggle('active')
             }
-        </script>
-        
+        </script> 
+
+<script>
+    function toggleMenu() {
+        var menu = document.querySelector('.navbar');
+        menu.classList.toggle('active');
+    }
+
+    function showReservationForm() {
+        document.getElementById('reservationForm').style.display = 'flex';
+        document.querySelector('.navbar').style.display = 'none'; // Masquer le menu
+    }
+
+    function hideReservationForm() {
+        document.getElementById('reservationForm').style.display = 'none';
+        document.querySelector('.navbar').style.display = 'flex'; // Afficher le menu
+    }
+</script>
+
+
     </body>
 </html>
